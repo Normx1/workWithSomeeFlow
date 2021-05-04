@@ -20,8 +20,8 @@
 
 
 <div style="padding: 5px;  align: left;">
-    <a href="${pageContext.request.contextPath}+/user/create">Product List</a>
-    <a href="${pageContext.request.contextPath}/productList">Product List</a>
+    <a href="${pageContext.request.contextPath}/user/create">Product List</a>
+    <a href="/productList">Product List</a>
 
 </div>
 

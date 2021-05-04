@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page import="com.example.Products.Product" %>
 <%@ page import="com.example.Dao.ProductDao" %>
 <%@ page import="java.util.List" %><%--
@@ -14,7 +15,7 @@
 </head>
 <body>
 <h2>Админ Лекарства</h2>
-<p><a href='<c:url value="WEB-INF/product/createProduct.jsp" />'>Create new product</a></p>
+<p><a href='<c:url value="/create" />'>Create new product</a></p>
 <table>
     <h3>Products</h3>
     <tr>
@@ -24,13 +25,7 @@
         <th>Cost</th>
         <th></th>
     </tr>
-    <%! List<Product> productList = new ProductDao().getAll(); %>
-    <% for (Product product : productList) { %>
-    <tr>
-        <td><%= product.getName() %>
-        </td>
-    </tr>
-    <%} %>
+
     <c:forEach var="product" items="${requestScope.products}">
         <tr>
             <td>${product.id}</td>
@@ -38,10 +33,10 @@
             <td>${product.count}</td>
             <td>${product.cost}</td>
             <td>
-                <a href='<c:url value="product/edit?id=${product.id}" />'>Edit</a> |
+                <a href='<c:url value="/product/edit?id=${product.id}" />'>Edit</a> |
                 <form method="post" action='<c:url value="/product/delete" />' style="display:inline;">
                     <input type="hidden" name="id" value="${product.id}">
-                    <input type="submit" value="Delete+${product.id}">
+                    <input type="submit" value="Delete">
                 </form>
         </tr>
     </c:forEach>

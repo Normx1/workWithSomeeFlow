@@ -17,7 +17,7 @@ public class UserDao implements BasicDao<User> {
         List<User> userList = new ArrayList<>();
         try (Connection conn = JDBCConnector.getConnection();
              Statement statement = conn.createStatement();
-             ResultSet resultSet = statement.executeQuery("select * from table_name");) {
+             ResultSet resultSet = statement.executeQuery("select * from users");) {
             //Получем все элементы таблицы
             while (resultSet.next()) {
                 int id = resultSet.getInt(1);
@@ -37,7 +37,7 @@ public class UserDao implements BasicDao<User> {
     public User getById(int id) {
         User user = new User();
         try (Connection conn = JDBCConnector.getConnection()) {
-            String sql = "select * from table_name where id=?";
+            String sql = "select * from users where id=?";
             try (PreparedStatement preparedStatement = conn.prepareStatement(sql)) {
                 preparedStatement.setInt(1, id);
                 ResultSet resultSet = preparedStatement.executeQuery();
@@ -61,7 +61,7 @@ public class UserDao implements BasicDao<User> {
     public User deleteById(int id) {
         User user = getById(id);
         try (Connection conn = JDBCConnector.getConnection()) {
-            String sql = "DELETE FROM table_name WHERE id = ?";
+            String sql = "DELETE FROM users WHERE id = ?";
             try (PreparedStatement preparedStatement = conn.prepareStatement(sql)) {
                 preparedStatement.setInt(1, id);
                 preparedStatement.execute();
@@ -78,7 +78,7 @@ public class UserDao implements BasicDao<User> {
     public User updateById(User user1) {
         User user = getById(user1.getId());
         try (Connection conn = JDBCConnector.getConnection()) {
-            String sql = "UPDATE table_name SET name = ?, mail = ?, password = ? WHERE id = ?";
+            String sql = "UPDATE users SET name = ?, mail = ?, password = ? WHERE id = ?";
             try (PreparedStatement preparedStatement = conn.prepareStatement(sql)) {
                 preparedStatement.setString(1, user1.getName());
                 preparedStatement.setString(2, user1.getMail());
@@ -96,7 +96,7 @@ public class UserDao implements BasicDao<User> {
     @Override
     public User create(User user) {
         try (Connection conn = JDBCConnector.getConnection()) {
-            String sql = "insert into table_name (name, mail, password) values (?, ?, ?)";
+            String sql = "insert into users (name, mail, password) values (?, ?, ?)";
             try (PreparedStatement preparedStatement = conn.prepareStatement(sql)) {
                 preparedStatement.setString(1, user.getName());
                 preparedStatement.setString(2, user.getMail());

@@ -10,7 +10,7 @@ public class JDBCConnector {
     private static BasicDataSource ds = new BasicDataSource();
 
     static {
-        ds.setUrl("jdbc:mysql://localhost:3306/pharm_list");
+        ds.setUrl("jdbc:mysql://localhost:3306/shop");
         ds.setUsername("root");
         ds.setPassword("123456");
         ds.setDriverClassName("com.mysql.cj.jdbc.Driver");

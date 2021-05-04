@@ -22,7 +22,7 @@ public class EditProductServlet extends HttpServlet {
             Product product = basicDao.getById(id);
             if (product != null) {
                 request.setAttribute("product", product);
-                request.getServletContext().getRequestDispatcher("/editProduct.jsp").forward(request, response);
+                request.getServletContext().getRequestDispatcher("/WEB-INF/product/editProduct.jsp").forward(request, response);
             } else {
                 request.setAttribute("id", id);
                 getServletContext().getRequestDispatcher("/notfound.jsp").forward(request, response);
@@ -47,7 +47,7 @@ public class EditProductServlet extends HttpServlet {
             int id = Integer.parseInt(request.getParameter("id"));
             Product product = new Product(id, productName, cost, count);
             basicDao.updateById(product);
-            response.sendRedirect(request.getContextPath() + "/");
+            response.sendRedirect( request.getContextPath()+"/productList");
         } catch (Exception ex) {
             getServletContext().getRequestDispatcher(request.getContextPath() + "/notfound.jsp").forward(request, response);
             System.out.println("not success" + "  " + ex);

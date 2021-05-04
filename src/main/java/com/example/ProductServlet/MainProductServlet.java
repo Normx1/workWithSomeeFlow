@@ -18,6 +18,10 @@ public class MainProductServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         req.setAttribute("products", basicDao.getAll());
+    try{
         getServletContext().getRequestDispatcher("/WEB-INF/product/productList.jsp").forward(req, resp);
+    }catch (IOException exception) {
+        System.out.println(exception);
+    }
     }
 }

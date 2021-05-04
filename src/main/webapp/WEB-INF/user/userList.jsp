@@ -31,7 +31,7 @@
         <td>${users.mail}</td>
         <td>${users.password}</td>
         <td>
-            <a href='<c:url value="user/edit?id=${users.id}" />'>Edit</a> |
+            <a href='<c:url value="/user/edit?id=${users.id}" />'>Edit</a> |
             <form method="post" action='<c:url value="user/delete" />' style="display:inline;">
                 <input type="hidden" name="id" value="${users.id}">
                 <input type="submit" value="Delete">

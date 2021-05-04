@@ -21,7 +21,7 @@ public class DeleteProductServlet extends HttpServlet {
         try {
             int id = Integer.parseInt(request.getParameter("id"));
             basicDao.deleteById(id);
-            response.sendRedirect("/");
+            response.sendRedirect(request.getContextPath()+"/");
         } catch (Exception ex) {
             ex.printStackTrace();
 

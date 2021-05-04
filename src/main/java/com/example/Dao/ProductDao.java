@@ -13,7 +13,7 @@ public class ProductDao implements BasicDao<Product> {
         List<Product> productList = new ArrayList<>();
         try (Connection conn = JDBCConnector.getConnection()) {
             Statement statement = conn.createStatement();
-            ResultSet resultSet = statement.executeQuery("select * from table_name");
+            ResultSet resultSet = statement.executeQuery("select * from products");
             {
                 while ((resultSet.next())) {
                     int id = resultSet.getInt(1);
@@ -36,16 +36,15 @@ public class ProductDao implements BasicDao<Product> {
     public Product getById(int id) {
         Product product = new Product();
         try (Connection conn = JDBCConnector.getConnection()) {
-            String sql = "select * from table_name where id=?";
+            String sql = "select * from products where id=?";
             try (PreparedStatement preparedStatement = conn.prepareStatement(sql)) {
                 preparedStatement.setInt(1, id);
                 ResultSet resultSet = preparedStatement.executeQuery();
                 if (resultSet.next()) {
-                    int prodid = resultSet.getInt(1);
                     String name = resultSet.getString(2);
                     int cost = resultSet.getInt(3);
                     int count = resultSet.getInt(4);
-                    Product product1 = new Product(prodid, name, cost, count);
+                      product = new Product(id, name, cost, count);
                 }
 
             }
@@ -60,7 +59,7 @@ public class ProductDao implements BasicDao<Product> {
     public Product deleteById(int id) {
         Product product = new Product();
         try (Connection conn = JDBCConnector.getConnection()) {
-            String sql = "delete * from table_name where id=?";
+            String sql = "DELETE FROM products WHERE id = ?";
             try (PreparedStatement preparedStatement = conn.prepareStatement(sql)) {
                 preparedStatement.setInt(1, id);
                 preparedStatement.execute();
@@ -69,22 +68,21 @@ public class ProductDao implements BasicDao<Product> {
             ex.printStackTrace();
             throw new RuntimeException(ex);
         }
-
-        return product;
+        return null;
     }
 
     @Override
     public Product updateById(Product model) {
         Product product = getById(model.getId());
         try (Connection conn = JDBCConnector.getConnection()) {
-            String sql = "UPDATE table_name SET name = ?, count = ?, cost = ? WHERE id = ?";
+            String sql = "UPDATE products SET name = ?, count = ?, cost = ? WHERE id = ?";
             try (PreparedStatement preparedStatement = conn.prepareStatement(sql)) {
                 preparedStatement.setString(1, model.getName());
-                preparedStatement.setInt(2, model.getCost());
-                preparedStatement.setInt(3, model.getCount());
+                preparedStatement.setInt(2, model.getCount());
+                preparedStatement.setInt(3, model.getCost());
+                preparedStatement.setInt(4, model.getId());
                 preparedStatement.execute();
             }
-
         } catch (SQLException ex) {
             ex.printStackTrace();
         }
@@ -94,7 +92,7 @@ public class ProductDao implements BasicDao<Product> {
     @Override
     public Product create(Product model) {
         try (Connection conn = JDBCConnector.getConnection()) {
-            String sql = "insert into table_name (name,cost, count ) values(?,?,?)";
+            String sql = "insert into products (name,cost, count ) values(?,?,?)";
             try (PreparedStatement preparedStatement = conn.prepareStatement(sql)) {
                 preparedStatement.setString(1, model.getName());
                 preparedStatement.setInt(2, model.getCost());

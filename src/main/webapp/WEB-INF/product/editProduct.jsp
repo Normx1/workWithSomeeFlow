@@ -25,7 +25,7 @@
     <input type="hidden" name="id" value="${product.id}">
     <input type="submit" value="Save"/>|
     <td colspan="2">
-        <a href="${pageContext.request.contextPath}/">Cancel</a>
+        <a href="${pageContext.request.contextPath}">Cancel</a>
     </td>
 </form>
 </body>
