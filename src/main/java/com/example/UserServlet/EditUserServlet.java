@@ -23,7 +23,7 @@ public class EditUserServlet extends HttpServlet {
 
             if (users != null) {
                 request.setAttribute("users", users);
-                getServletContext().getRequestDispatcher("/editUser.jsp").forward(request, response);
+                getServletContext().getRequestDispatcher("/WEB-INF/user/editUser.jsp").forward(request, response);
             } else {
                 getServletContext().getRequestDispatcher("/notfound.jsp").forward(request, response);
             }
@@ -44,7 +44,7 @@ public class EditUserServlet extends HttpServlet {
             response.sendRedirect(request.getContextPath() + "/");
         } catch (Exception ex) {
             ex.printStackTrace();
-            getServletContext().getRequestDispatcher("/notfound.jsp").forward(request, response);
+//            getServletContext().getRequestDispatcher("/notfound.jsp").forward(request, response);
         }
     }
 }

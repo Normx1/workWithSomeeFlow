@@ -18,13 +18,12 @@ public class CreateUserServlet extends HttpServlet {
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        getServletContext().getRequestDispatcher("/WEB-INF/registration.jsp").forward(request, response);
+        getServletContext().getRequestDispatcher("/WEB-INF/user/createUser.jsp").forward(request, response);
     }
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        System.out.println(1);
-        try {
+         try {
             String name = request.getParameter("name");
             String mail = request.getParameter("mail");
             String password = request.getParameter("password");

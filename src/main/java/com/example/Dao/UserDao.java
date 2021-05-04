@@ -23,7 +23,8 @@ public class UserDao implements BasicDao<User> {
                 int id = resultSet.getInt(1);
                 String name = resultSet.getString(2);
                 String mail = resultSet.getString(3);
-                User user = new User(id, name, mail);
+                String password = resultSet.getString(4);
+                User user = new User(id, name, mail, password);
                 userList.add(user);
             }
         } catch (Exception ex) {
@@ -42,12 +43,10 @@ public class UserDao implements BasicDao<User> {
                 preparedStatement.setInt(1, id);
                 ResultSet resultSet = preparedStatement.executeQuery();
                 if (resultSet.next()) {
-
-                    int userId = resultSet.getInt(1);
                     String name = resultSet.getString(2);
                     String mail = resultSet.getString(3);
                     String password = resultSet.getString(4);
-                    User userById = new User(userId, name, mail, password);
+                    user = new User(id, name, mail, password);
                 }
             }
         } catch (Exception ex) {
@@ -83,7 +82,7 @@ public class UserDao implements BasicDao<User> {
                 preparedStatement.setString(1, user1.getName());
                 preparedStatement.setString(2, user1.getMail());
                 preparedStatement.setString(3, user1.getPassword());
-                preparedStatement.setInt(4, user.getId());
+                preparedStatement.setInt(4, user1.getId());
                 preparedStatement.execute();
             }
         } catch (Exception ex) {

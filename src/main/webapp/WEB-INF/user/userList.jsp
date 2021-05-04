@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%--
   Created by IntelliJ IDEA.
   User: qa
@@ -13,7 +14,7 @@
 <body>
 
 <h2>Users List</h2>
-<p><a href='<c:url value="/createUser" />'>Create new</a></p>
+<p><a href='<c:url value="/user/create" />'>Create new</a></p>
 
 <table>
     <tr>
@@ -32,13 +33,14 @@
         <td>${users.password}</td>
         <td>
             <a href='<c:url value="/user/edit?id=${users.id}" />'>Edit</a> |
-            <form method="post" action='<c:url value="user/delete" />' style="display:inline;">
+            <form method="post" action='<c:url value="/user/delete" />' style="display:inline;">
                 <input type="hidden" name="id" value="${users.id}">
                 <input type="submit" value="Delete">
             </form>
         </td>
     </tr>
     </c:forEach>
+</table>
 
 </body>
 </html>

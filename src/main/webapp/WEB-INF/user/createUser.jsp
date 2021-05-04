@@ -7,7 +7,7 @@
 </head>
 <body>
 <h3>New user</h3>
-<form method="post" action="user/create">
+<form method="post" action="/user/create">
     <label>Name</label><br>
     <input name="name"/><br><br>
     <label>Mail</label><br>

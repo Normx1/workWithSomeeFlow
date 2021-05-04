@@ -34,7 +34,7 @@ public class User {
         return mail;
     }
 
-    public User(String name, String password, String mail) {
+    public User(String name, String mail, String password) {
         this.name = name;
         this.password = password;
         this.mail = mail;
@@ -48,7 +48,7 @@ public class User {
     public User() {
     }
 
-    public User(int id, String name, String password, String mail) {
+    public User(int id, String name, String mail, String password) {
         this.id = id;
         this.name = name;
         this.password = password;
