@@ -34,8 +34,7 @@ public class EditUserServlet extends HttpServlet {
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-
-        try {
+         try {
             int id = Integer.parseInt(request.getParameter("id"));
             String name = request.getParameter("name");
             String mail = request.getParameter("mail");
