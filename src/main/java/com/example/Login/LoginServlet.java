@@ -3,7 +3,6 @@ package com.example.Login;
 import com.example.Cookie.cookieDao;
 import com.example.Dao.UserDao;
 import com.example.User.User;
-import sun.rmi.transport.Connection;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -54,7 +53,6 @@ public class LoginServlet extends HttpServlet {
             hasError = true;
             errorString = "Required username and password!";
         } else {
-            Connection conn =  cookieDao.getStoredConnection(request);
             // Найти user в DB.
             user = UserDao.find(userName, password);
 

@@ -1,7 +1,6 @@
 package com.example.Cookie;
 
 import com.example.User.User;
-import sun.rmi.transport.Connection;
 
 import javax.servlet.Servlet;
 import javax.servlet.ServletRequest;
@@ -10,6 +9,7 @@ import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import java.sql.Connection;
 
 @WebFilter(filterName = "CookieFilter", urlPatterns = {"/*"})
 public class cookieDao {
