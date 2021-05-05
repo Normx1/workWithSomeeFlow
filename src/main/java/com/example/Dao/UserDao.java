@@ -108,4 +108,27 @@ public class UserDao implements BasicDao<User> {
         }
         return user;
     }
+
+     public static User find(String name, String password) {
+         User user = new User();
+         try (Connection conn = JDBCConnector.getConnection()) {
+             String sql = "select * from users where name =? , password = ?";
+             try (PreparedStatement preparedStatement = conn.prepareStatement(sql)) {
+                 preparedStatement.setString(1, name);
+                 preparedStatement.setString(2, password);
+                 ResultSet resultSet = preparedStatement.executeQuery();
+                 if (resultSet.next()) {
+                     int id = resultSet.getInt(1);
+                     String nameUser = resultSet.getString(2);
+                     String mail = resultSet.getString(3);
+                     String passwordUser = resultSet.getString(4);
+                     user = new User(id, nameUser, mail, passwordUser);
+                 }
+             }
+         } catch (Exception ex) {
+             ex.printStackTrace();
+             throw new RuntimeException(ex);
+         }
+         return user;
+    }
 }

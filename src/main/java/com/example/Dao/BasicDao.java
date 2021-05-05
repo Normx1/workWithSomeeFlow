@@ -1,8 +1,10 @@
 package com.example.Dao;
 
+import com.example.User.User;
+
 import java.util.List;
 
-public interface BasicDao <T> {
+public interface BasicDao<T> {
     List<T> getAll();
 
     T getById(int id);
@@ -12,5 +14,6 @@ public interface BasicDao <T> {
     T updateById(T model);
 
     T create(T model);
+
 
 }

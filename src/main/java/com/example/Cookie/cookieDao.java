@@ -5,14 +5,17 @@ import sun.rmi.transport.Connection;
 
 import javax.servlet.Servlet;
 import javax.servlet.ServletRequest;
+import javax.servlet.annotation.WebFilter;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-public class cookiDao {
+@WebFilter(filterName = "CookieFilter", urlPatterns = {"/*"})
+public class cookieDao {
     public static final String Att_Name_Connection = "ATTRIBUTE_FOR_CONNECTION";
     public static final String Att_Name_User_Name = "ATTRIBUTE_FOR_STORE_USER_NAME_IN_COOKIE";
+
 
     public static void storeConnection(ServletRequest request, Connection conn) {
         request.setAttribute(Att_Name_Connection, conn);
@@ -23,7 +26,7 @@ public class cookiDao {
         return conn;
     }
 
-    public static void storeLoginedUser(HttpSession session, User logUser) {
+    public static void storeLoginUser(HttpSession session, User logUser) {
         session.setAttribute("logUser", logUser);
     }
 
